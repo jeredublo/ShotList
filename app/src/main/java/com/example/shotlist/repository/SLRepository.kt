@@ -15,42 +15,44 @@ class SLRepository(
     private val dispatcher: CoroutineDispatcher)
 {
 
-    suspend fun addProject(newProject : Project) {
-//        if (dao.findProject(newProject.id) == null)
-//            dao.insertProject(newProject);
-//        else TODO: might not need this since itll just overwrite the existing mathcing project
-        dao.insertProject(newProject);
+    // ==PROJECTS==
 
-
-
-
-    //load into the DB
-            //no project exists, load new into DB
-        // check if project exists
-        // if project exists, then add new information and then insert back into db
-        // add project to the
-    }
-
-    /**
-     * getProjects. Emits loading, error and success while fetching
-     * list of projects from the db.
-     */
-    suspend fun getProjects(): Flow<DataResult<List<Project>?>> {
+    // can use this for editing projects too. just call it with the edited project object
+    suspend fun addProject(newProject : Project) : Flow<DataResult<List<Project>>> {
         return flow {
             try {
                 emit(DataResult.Loading)
-                // Grab projects from db
-                if (dao.getProjects().isNotEmpty())
-                    emit(DataResult.Success(dao.getProjects())) // send projects we found in DB
-                else {
-                    emit(DataResult.Success(null))  // no projects found
-                }
+                dao.insertProject(newProject);          // add to db
+                val finProjList = dao.getAllProjects()
+                emit(DataResult.Success(finProjList)) // send back complete-r list
             } catch (exception: Exception) {
                 emit(DataResult.Error(exception.toString()))
             }
         }.flowOn(dispatcher)
     }
 
+    /**
+     * getProjects. Emits loading, error and success while fetching
+     * list of projects from the db.
+     */
+    suspend fun getProjects(): Flow<DataResult<List<Project>>> {
+        return flow {
+            try {
+                emit(DataResult.Loading)
+                // Grab projects from db
+                val projectList = dao.getAllProjects()
+                emit(DataResult.Success(projectList)) // NOTE: this might be empty if no projects exist in DB
+            } catch (exception: Exception) {
+                emit(DataResult.Error(exception.toString()))
+            }
+        }.flowOn(dispatcher)
+    }
+
+
+
+
+
+    // ==SHOTS==
 /*
     suspend fun getShots(): Flow<DataResult<List<Shot>?>> {
 

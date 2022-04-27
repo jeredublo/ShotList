@@ -13,8 +13,8 @@ interface SLDao {
     @Query("SELECT * FROM project")
     fun getAllProjects(): List<Project>
 
-    @Query("SELECT * FROM project WHERE id IS :projectId")  // TODO: ask chris if * is correct here
-    fun findProject(projectId : String): Project?
+    @Query("SELECT * FROM project WHERE projectId IS :projectId")  // TODO: ask chris if * is correct here
+    fun findProject(projectId : String): List<Project>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertProject(newProject : Project)
