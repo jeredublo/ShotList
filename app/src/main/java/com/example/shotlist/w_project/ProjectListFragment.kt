@@ -25,26 +25,50 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
 
     override fun initUI(view: View) {
         // initialize the adapter and click listeners
+
+        // need a listener for the addProject button
+
+        // things that dont change:
+        // title needs to be set
+        // filter needs to be set
+        // thats it.
     }
 
     override fun renderUI(newState: ProjectListState) {
-//        when (newState.projectList) {
-//            is DataResult.Success -> {
-//                view?.run {
-//
-//                    }
-//                }
-//            }
-//            is DataResult.Error -> {
-//                view?.run {
-//
-//                }
-//            }
-//            is DataResult.Loading -> {
-//                view?.run {
-//
-//                }
-//            }
-//        }
+        when (newState.projectList) {
+            is DataResult.Success -> {
+                if (newState.projectList.data.isEmpty()) {
+                    view?.run {
+//                    there are no projects found
+//                    only show add project button &
+//                    maybe a message saying 0 projects found
+//                    loading spinner needs to stop
+//                        dont show error message
+
+
+                    }
+                 }
+                 else {
+                     view?.run {
+
+                     }
+                 }
+            }
+            is DataResult.Error -> {
+                view?.run {
+//                    loading spinnner needs to stop
+//                    log error message to console
+//                    show user-friendly error message on screen
+
+                }
+            }
+            is DataResult.Loading -> {
+                view?.run {
+                    //loading spinner needs to spin
+
+
+                }
+            }
+        }
     }
 }
