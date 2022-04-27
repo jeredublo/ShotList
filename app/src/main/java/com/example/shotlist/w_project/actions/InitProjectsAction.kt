@@ -13,7 +13,7 @@ class InitProjectsAction(
     private val repo : SLRepository) : BaseAction<ProjectListState>
 {
     override suspend fun performAction(currentState: ProjectListState, viewModel: MVIViewModel<ProjectListState>) {
-        repo.getProjects().collect {
+        repo.getAllProjects().collect {
             projects -> viewModel.sendUpdate(ProjectListUpdater(projects))
         }
     }

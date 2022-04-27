@@ -17,25 +17,11 @@ class SLRepository(
 
     // ==PROJECTS==
 
-    // can use this for editing projects too. just call it with the edited project object
-    suspend fun addProject(newProject : Project) : Flow<DataResult<List<Project>>> {
-        return flow {
-            try {
-                emit(DataResult.Loading)
-                dao.insertProject(newProject);          // add to db
-                val finProjList = dao.getAllProjects()
-                emit(DataResult.Success(finProjList)) // send back complete-r list
-            } catch (exception: Exception) {
-                emit(DataResult.Error(exception.toString()))
-            }
-        }.flowOn(dispatcher)
-    }
-
     /**
      * getProjects. Emits loading, error and success while fetching
      * list of projects from the db.
      */
-    suspend fun getProjects(): Flow<DataResult<List<Project>>> {
+    suspend fun getAllProjects(): Flow<DataResult<List<Project>>> {
         return flow {
             try {
                 emit(DataResult.Loading)
@@ -48,7 +34,21 @@ class SLRepository(
         }.flowOn(dispatcher)
     }
 
-
+    /**
+     * addProject(newProject). For adding a new and editing an existing project (?).
+     */
+    suspend fun addProject(newProject : Project) : Flow<DataResult<List<Project>>> {
+        return flow {
+            try {
+                emit(DataResult.Loading)
+                dao.insertProject(newProject);          // add to db
+                val finProjList = dao.getAllProjects()
+                emit(DataResult.Success(finProjList)) // send back complete-r list
+            } catch (exception: Exception) {
+                emit(DataResult.Error(exception.toString()))
+            }
+        }.flowOn(dispatcher)
+    }
 
 
 
