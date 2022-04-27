@@ -1,9 +1,9 @@
-package com.example.shotlist.w_project
+package com.example.shotlist.w_project.data_structs
 
-import com.example.shotlist.w_project.data_structs.Project
+import com.example.shotlist.base_mvi.DataResult
 
 data class ProjectListState(
-    val projectList : List<Project>,
+    val projectList : DataResult<List<Project>>,
     val sortBy : SortedBy,
 )
 

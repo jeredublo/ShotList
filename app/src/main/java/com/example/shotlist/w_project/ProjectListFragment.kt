@@ -7,6 +7,7 @@ import com.example.shotlist.base_mvi.MVIFragment
 import com.example.shotlist.repository.SLDatabase
 import com.example.shotlist.repository.SLRepository
 import com.example.shotlist.w_project.actions.InitProjectsAction
+import com.example.shotlist.w_project.data_structs.ProjectListState
 import kotlinx.coroutines.Dispatchers
 
 class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(ProjectListViewModel::class.java, R.layout.projectList_fragment) {

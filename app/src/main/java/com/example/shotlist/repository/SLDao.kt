@@ -14,7 +14,7 @@ interface SLDao {
     fun getAllProjects(): List<Project>
 
     @Query("SELECT * FROM project WHERE projectId IS :projectId")  // TODO: ask chris if * is correct here
-    fun findProject(projectId : String): List<Project>
+    fun findProject(projectId : String): List<Project> // should either return empty list or a list with exactly one element
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertProject(newProject : Project)
@@ -28,7 +28,7 @@ interface SLDao {
     fun getAllShots(projectId : String): List<Shot>
 
     @Query("SELECT * FROM shot where shotId is :shotId")
-    fun findShot(shotId : String) : Shot?
+    fun findShot(shotId : String) : List<Shot> // should either return empty list or a list with exactly one element
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertShot(newShot : Shot)
