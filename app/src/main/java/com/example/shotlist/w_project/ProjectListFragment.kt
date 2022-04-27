@@ -1,8 +1,12 @@
 package com.example.shotlist.w_project
 
 import android.view.View
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.shotlist.R
 import com.example.shotlist.base_mvi.BaseAction
+import com.example.shotlist.base_mvi.DataResult
 import com.example.shotlist.base_mvi.MVIFragment
 import com.example.shotlist.repository.SLDatabase
 import com.example.shotlist.repository.SLRepository
@@ -15,15 +19,32 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
         context?.let {
             val dao = SLDatabase.getDatabase(it).slDao()
             val repo = SLRepository(dao, Dispatchers.IO)
-            return InitProjectsAction(repo)
+            InitProjectsAction(repo)
         }
     }
 
     override fun initUI(view: View) {
-        TODO("Not yet implemented")
+        // initialize the adapter and click listeners
     }
 
     override fun renderUI(newState: ProjectListState) {
-        TODO("Not yet implemented")
+//        when (newState.projectList) {
+//            is DataResult.Success -> {
+//                view?.run {
+//
+//                    }
+//                }
+//            }
+//            is DataResult.Error -> {
+//                view?.run {
+//
+//                }
+//            }
+//            is DataResult.Loading -> {
+//                view?.run {
+//
+//                }
+//            }
+//        }
     }
 }
