@@ -5,10 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.shotlist.w_project.data_structs.Project
+import com.example.shotlist.x_shot.data_structs.Shot
 
 // TODO: For each entity, need @PrimaryKey + @Entity on the data classes
-@Database(entities = [Project::class], version = 1)
-// @TypeConverters(ExampleTypeConverter::class) TODO: create one from template in case objects contain non-primitive values
+@Database(entities = [Project::class, Shot::class], version = 1)
+// @TypeConverters(ExampleTypeConverter::class)
 abstract class SLDatabase : RoomDatabase() {
     abstract fun slDao(): SLDao
 

@@ -4,7 +4,6 @@ import android.view.View
 import com.example.shotlist.R
 import com.example.shotlist.base_mvi.BaseAction
 import com.example.shotlist.base_mvi.MVIFragment
-import com.example.shotlist.repository.SLDao
 import com.example.shotlist.repository.SLDatabase
 import com.example.shotlist.repository.SLRepository
 import com.example.shotlist.w_project.actions.InitProjectsAction

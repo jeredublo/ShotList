@@ -24,7 +24,11 @@ class AddProjectAction(
         //generate some KEY here
 
         val genId = "asdfghj"
-        val project = Project(genId, name, director, cinematographer, date)
+        val project = Project(genId,
+                              name,
+                              director,
+                              cinematographer,
+                              date)
         // add to db? or maybe its not this action's responsibility
         repo.addProject(project)
         // ProjectListState = list<project>
