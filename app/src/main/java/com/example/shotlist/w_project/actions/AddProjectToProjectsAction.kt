@@ -11,7 +11,7 @@ import java.util.UUID
 
  import kotlinx.coroutines.flow.collect
 
-class AddNewProjectAction(
+class AddProjectToProjectsAction(
     private val repo : SLRepository,
     private val name : String,
     private val director : String,
@@ -28,10 +28,13 @@ class AddNewProjectAction(
                               director,
                               cinematographer,
                               date)
+
         // 2. add project to db
         repo.addProject(project).collect {
+
             // 3. send update to our state
             projects -> viewModel.sendUpdate(ProjectListUpdater(projects))
+
         }
     }
 

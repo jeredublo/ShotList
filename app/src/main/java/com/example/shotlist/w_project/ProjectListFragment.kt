@@ -1,7 +1,6 @@
 package com.example.shotlist.w_project
 
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +10,6 @@ import com.example.shotlist.base_mvi.DataResult
 import com.example.shotlist.base_mvi.MVIFragment
 import com.example.shotlist.repository.SLDatabase
 import com.example.shotlist.repository.SLRepository
-import com.example.shotlist.w_project.actions.AddNewProjectAction
 import com.example.shotlist.w_project.actions.AddProjectButtonClickedAction
 import com.example.shotlist.w_project.actions.InitProjectsAction
 import com.example.shotlist.w_project.actions.ProjectClickedAction

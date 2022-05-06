@@ -3,4 +3,8 @@
   <string name="Basic_error">There was an error fetching data</string>
   <string name="name_asc">Name Asc</string>
   <string name="add_project_button">+ Add project</string>
+  <string name="cinematographer_field_label">Cinematographer/DP</string>
+  <string name="director_field_label">Director</string>
+  <string name="project_field_label">Project Name</string>
+  <string name="production_date_field_label">Production Date</string>
 </resources>
