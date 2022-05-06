@@ -1,3 +1,6 @@
 <resources>
   <string name="app_name">ShotList</string>
+  <string name="Basic_error">There was an error fetching data</string>
+  <string name="name_asc">Name Asc</string>
+  <string name="add_project_button">+ Add project</string>
 </resources>

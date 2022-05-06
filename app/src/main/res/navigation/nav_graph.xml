@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/projectListFragment">
+
+  <fragment
+      android:id="@+id/projectListFragment"
+      android:name="com.example.shotlist.w_project.ProjectListFragment"
+      android:label="ProjectListFragment" >
+    <action
+        android:id="@+id/action_projectListFragment_to_newProjectFragment"
+        app:destination="@id/newProjectFragment" />
+  </fragment>
+  <fragment
+      android:id="@+id/newProjectFragment"
+      android:name="com.example.shotlist.w_project.NewProjectFragment"
+      android:label="NewProjectFragment" />
+</navigation>

@@ -51,7 +51,7 @@ dependencies {
   implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.11.2"
 
   // Multi Processing
-  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
+  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
   implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
   implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
   implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
@@ -68,4 +68,7 @@ dependencies {
   implementation "androidx.room:room-runtime:2.4.2"
   kapt "androidx.room:room-compiler:2.4.2"
 
+
+  // Font awesome library
+  implementation "info.androidhive:fontawesome:0.0.5"
 }

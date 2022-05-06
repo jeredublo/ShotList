@@ -10,7 +10,7 @@
       android:supportsRtl="true"
       android:theme="@style/Theme.ShotList">
     <activity
-        android:name=".base_mvi.MainActivity"
+        android:name=".MainActivity"
         android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />

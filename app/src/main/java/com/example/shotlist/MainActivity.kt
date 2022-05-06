@@ -1,4 +1,4 @@
-package com.example.shotlist.base_mvi
+package com.example.shotlist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
