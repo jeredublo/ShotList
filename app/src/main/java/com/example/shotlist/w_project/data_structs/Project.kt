@@ -11,5 +11,6 @@ data class Project (
     val name : String,
     val director : String,
     val cinematographer : String,
-    val date : Date,
+    val date : String,  // will be changed to Date object later
+
 )

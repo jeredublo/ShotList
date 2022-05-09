@@ -11,6 +11,7 @@ import java.util.UUID
 
  import kotlinx.coroutines.flow.collect
 
+// To add project to state and db.
 class AddNewProjectAction(
     private val repo : SLRepository,
     private val name : String,

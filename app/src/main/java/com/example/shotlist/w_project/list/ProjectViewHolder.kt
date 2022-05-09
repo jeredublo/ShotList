@@ -2,8 +2,10 @@ package com.example.shotlist.w_project.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.shotlist.R
 import com.example.shotlist.w_project.data_structs.Project
 
@@ -14,9 +16,18 @@ class ProjectViewHolder(inflater: LayoutInflater, parent: ViewGroup) : RecyclerV
 
         // project name
         itemView.findViewById<TextView>(R.id.project_name)?.text = project.name
-// <link href='https://css.gg/ {ICONNAME} .css' rel='stylesheet'>
+
         // icon - same for all for now. eventually want to change image based on project type
-//        itemView.findViewById<>()
+        val imageUrl = ""
+        itemView.findViewById<ImageView>(R.id.card_icon)?.let {
+            Glide.with(itemView)
+                .load(imageUrl)
+                .centerCrop()
+                .into(it)
+        }
+
+        // production date string
+        itemView.findViewById<TextView>(R.id.production_date)?.text = project.date
 
     }
 

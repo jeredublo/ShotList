@@ -1,7 +1,6 @@
 package com.example.shotlist.w_project
 
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,8 +10,7 @@ import com.example.shotlist.base_mvi.DataResult
 import com.example.shotlist.base_mvi.MVIFragment
 import com.example.shotlist.repository.SLDatabase
 import com.example.shotlist.repository.SLRepository
-import com.example.shotlist.w_project.actions.AddNewProjectAction
-import com.example.shotlist.w_project.actions.AddProjectButtonClickedAction
+import com.example.shotlist.w_project.actions.AddButtonClickedAction
 import com.example.shotlist.w_project.actions.InitProjectsAction
 import com.example.shotlist.w_project.actions.ProjectClickedAction
 import com.example.shotlist.w_project.data_structs.ProjectListState
@@ -35,7 +33,10 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
     override fun initUI(view: View) {
         // initialize the adapter and click listeners
 
-        //Filter Listener
+        // Filter Listener
+        view.findViewById<TextView>(R.id.add_project_button).setOnClickListener {
+            AddButtonClickedAction()
+        }
 
         // Recycler view listener
         view.findViewById<RecyclerView>(R.id.projectList_list).run {
@@ -46,11 +47,9 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
 
         // Add project button listener
         view.findViewById<TextView>(R.id.add_project_button).setOnClickListener {
-            AddProjectButtonClickedAction()
+            AddButtonClickedAction()
         }
 
-
-        // need a listener for the addProject button
 
         // things that dont change:
         // title needs to be set

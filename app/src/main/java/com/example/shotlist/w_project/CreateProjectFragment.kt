@@ -4,9 +4,10 @@ import android.view.View
 import com.example.shotlist.R
 import com.example.shotlist.base_mvi.BaseAction
 import com.example.shotlist.base_mvi.MVIFragment
+import com.example.shotlist.w_project.data_structs.CreateProjectState
 
-class NewProjectFragment : MVIFragment<NewProjectState, NewProjectViewModel>(NewProjectViewModel::class.java, R.layout.NewProject_fragment) {
-    override fun getInitAction(): BaseAction<NewProjectState>? {
+class CreateProjectFragment : MVIFragment<CreateProjectState, CreateProjectViewModel>(CreateProjectViewModel::class.java, R.layout.createProject_fragment) {
+    override fun getInitAction(): BaseAction<CreateProjectState>? {
         TODO("Not yet implemented")
     }
 
@@ -14,7 +15,7 @@ class NewProjectFragment : MVIFragment<NewProjectState, NewProjectViewModel>(New
         TODO("Not yet implemented")
     }
 
-    override fun renderUI(newState: NewProjectState) {
+    override fun renderUI(createState: CreateProjectState) {
         TODO("Not yet implemented")
     }
 }
