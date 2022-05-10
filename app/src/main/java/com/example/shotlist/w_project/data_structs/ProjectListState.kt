@@ -9,8 +9,8 @@ data class ProjectListState(
 )
 
 enum class SortedBy (val title : String, val icon : Int) {
-    NameAsc("Name", R.drawable.ic_baseline_playlist_play_24),
-    NameDesc("Name", R.drawable.ic_baseline_playlist_play_24),
-    DateAsc("Date", R.drawable.ic_baseline_playlist_play_24), // @jess change these icons later
-    DateDesc("Date", R.drawable.ic_baseline_playlist_play_24),
+    NameAsc("Name", R.drawable.ic_baseline_north_24),
+    NameDesc("Name", R.drawable.ic_baseline_south_24),
+    DateAsc("Date", R.drawable.ic_baseline_north_24), // @jess change these icons later
+    DateDesc("Date", R.drawable.ic_baseline_south_24),
 }
