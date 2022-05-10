@@ -11,6 +11,7 @@ import com.example.shotlist.base_mvi.MVIFragment
 import com.example.shotlist.repository.SLDatabase
 import com.example.shotlist.repository.SLRepository
 import com.example.shotlist.w_project.actions.AddButtonClickedAction
+import com.example.shotlist.w_project.actions.FilterClickedAction
 import com.example.shotlist.w_project.actions.InitProjectsAction
 import com.example.shotlist.w_project.actions.ProjectClickedAction
 import com.example.shotlist.w_project.data_structs.ProjectListState
@@ -34,8 +35,8 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
         // initialize the adapter and click listeners
 
         // Filter Listener
-        view.findViewById<TextView>(R.id.add_project_button).setOnClickListener {
-            AddButtonClickedAction()
+        view.findViewById<TextView>(R.id.filter_text).setOnClickListener {
+            FilterClickedAction()
         }
 
         // Recycler view listener
@@ -50,17 +51,23 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
             AddButtonClickedAction()
         }
 
+    }
+
+
+    override fun renderUI(newState: ProjectListState) {
+
 
         // things that dont change:
         // title needs to be set
         // filter needs to be set
         // thats it.
-    }
 
-
-    override fun renderUI(newState: ProjectListState) {
         when (newState.projectList) {
             is DataResult.Success -> {
+                // change filter?
+
+
+
                 if (newState.projectList.data.isEmpty()) {
                     view?.run {
 //                    there are no projects found

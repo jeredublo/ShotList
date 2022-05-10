@@ -8,7 +8,7 @@ import com.example.shotlist.w_project.data_structs.CreateProjectState
 
 class CreateProjectFragment : MVIFragment<CreateProjectState, CreateProjectViewModel>(CreateProjectViewModel::class.java, R.layout.createProject_fragment) {
     override fun getInitAction(): BaseAction<CreateProjectState>? {
-        TODO("Not yet implemented")
+        return null // nothing to set up for this screen
     }
 
     override fun initUI(view: View) {
