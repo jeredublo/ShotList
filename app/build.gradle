@@ -68,7 +68,4 @@ dependencies {
   implementation "androidx.room:room-runtime:2.4.2"
   kapt "androidx.room:room-compiler:2.4.2"
 
-
-  // Font awesome library
-  implementation "info.androidhive:fontawesome:0.0.5"
 }

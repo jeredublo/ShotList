@@ -3,33 +3,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black">
+
 
   <TextView
       android:id="@+id/filter_text"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:visibility="visible"
-      android:text="@string/name_asc"
+      android:textColor="@color/white"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintLeft_toLeftOf="parent" />
+
+  <ImageView
+      android:id="@+id/filter_icon"
+      android:layout_width="20dp"
+      android:layout_height="20dp"
+      android:visibility="visible"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintLeft_toRightOf="@id/filter_text"
+      />
 
   <ProgressBar
       android:id="@+id/loading_spinner"
       style="?android:attr/progressBarStyleLarge"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_consraintBottom_toBottomOf="@id/filter_text"
-      app:layout_constraintLeft_toLeftOf="parent" />
+      app:layout_constraintTop_toBottomOf="@id/filter_text"
+      app:layout_constraintBottom_toTopOf="@id/add_project_button"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"  />
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/projectList_list"
       android:layout_width="0dp"
       android:layout_height="0dp"
       android:visibility="gone"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_consraintBottom_toBottomOf="@id/filter_text"
+      app:layout_constraintTop_toBottomOf="@id/filter_text"
+      app:layout_constraintBottom_toTopOf="@id/add_project_button"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent" />
 
@@ -40,15 +52,18 @@
       android:visibility="gone"
       android:text="@string/Basic_error"
       app:layout_constraintTop_toBottomOf="@id/filter_text"
-      app:layout_constraintLeft_toLeftOf="parent" />
+      app:layout_constraintBottom_toTopOf="@id/add_project_button"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent" />
 
   <Button
       android:id="@+id/add_project_button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/add_project_button"
-      app:layout_constraintTop_toBottomOf="@id/projectList_list"
-      app:layout_constraintLeft_toLeftOf="parent" />
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

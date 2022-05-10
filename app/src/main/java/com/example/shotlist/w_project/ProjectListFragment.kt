@@ -1,6 +1,9 @@
 package com.example.shotlist.w_project
 
 import android.view.View
+import android.widget.Filter
+import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,9 +21,10 @@ import com.example.shotlist.w_project.data_structs.ProjectListState
 import com.example.shotlist.w_project.list.ProjectAdapter
 import kotlinx.coroutines.Dispatchers
 
-class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(ProjectListViewModel::class.java, R.layout.projectList_fragment)
+class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(ProjectListViewModel::class.java, R.layout.projectlist_fragment)
 {
 
+    lateinit var adapter: ProjectAdapter
 
     override fun getInitAction(): BaseAction<ProjectListState>? {
         return context?.let {
@@ -36,67 +40,77 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
 
         // Filter Listener
         view.findViewById<TextView>(R.id.filter_text).setOnClickListener {
-            FilterClickedAction()
+            viewModel.performAction(FilterClickedAction())
         }
 
         // Recycler view listener
+        adapter = ProjectAdapter() {
+            viewModel.performAction(ProjectClickedAction(it.projectId))
+        }
         view.findViewById<RecyclerView>(R.id.projectList_list).run {
             layoutManager = LinearLayoutManager(activity)
-            adapter = ProjectAdapter(listOf()) {
-                viewModel.performAction(ProjectClickedAction(it.projectId))}  // passing in the onclick
+            adapter = adapter
         }
 
         // Add project button listener
         view.findViewById<TextView>(R.id.add_project_button).setOnClickListener {
-            AddButtonClickedAction()
+            viewModel.performAction(AddButtonClickedAction())
         }
 
     }
 
 
     override fun renderUI(newState: ProjectListState) {
-
-
-        // things that dont change:
-        // title needs to be set
-        // filter needs to be set
-        // thats it.
+        view?.run {
+            findViewById<TextView>(R.id.filter_text)?.text = newState.sortBy.title
+            findViewById<ImageView>(R.id.filter_icon)?.setImageResource(newState.sortBy.icon)
+        }
 
         when (newState.projectList) {
+
+            is DataResult.Loading -> {
+                view?.run {
+                    //loading spinner needs to spin
+                    findViewById<ProgressBar>(R.id.loading_spinner)?.visibility = View.VISIBLE
+                    findViewById<RecyclerView>(R.id.projectList_list)?.visibility = View.GONE
+                    findViewById<TextView>(R.id.error_message)?.visibility = View.GONE
+                    findViewById<TextView>(R.id.add_project_button)?.visibility = View.VISIBLE
+
+                }
+            }
+
             is DataResult.Success -> {
-                // change filter?
+                view?.run {
+                    findViewById<ProgressBar>(R.id.loading_spinner)?.visibility = View.GONE
 
-
+                }
 
                 if (newState.projectList.data.isEmpty()) {
                     view?.run {
-//                    there are no projects found
-//                    only show add project button &
-//                    maybe a message saying 0 projects found
-//                    loading spinner needs to stop
-//                        dont show error message
-
+                        findViewById<RecyclerView>(R.id.projectList_list)?.visibility = View.GONE
+                        findViewById<TextView>(R.id.error_message)?.text = "No projects found"
+                        findViewById<TextView>(R.id.add_project_button)?.visibility = View.VISIBLE
 
                     }
                  }
                  else {
                      view?.run {
+                         findViewById<RecyclerView>(R.id.projectList_list).run {
+                             visibility = View.VISIBLE
+                         }
+                         findViewById<TextView>(R.id.error_message)?.visibility = View.GONE
+                         findViewById<TextView>(R.id.add_project_button)?.visibility = View.VISIBLE
 
                      }
+                    adapter.submitList(newState.projectList.data) // TODO: update the templates to use diffutil now
                  }
             }
             is DataResult.Error -> {
                 view?.run {
-//                    loading spinnner needs to stop
-//                    log error message to console
-//                    show user-friendly error message on screen
-
-                }
-            }
-            is DataResult.Loading -> {
-                view?.run {
-                    //loading spinner needs to spin
-
+                    findViewById<ProgressBar>(R.id.loading_spinner)?.visibility = View.GONE
+                    findViewById<TextView>(R.id.error_message)?.text = "Error loading your projects"
+                    findViewById<RecyclerView>(R.id.projectList_list)?.visibility = View.GONE
+                    findViewById<TextView>(R.id.add_project_button)?.visibility = View.GONE
 
                 }
             }

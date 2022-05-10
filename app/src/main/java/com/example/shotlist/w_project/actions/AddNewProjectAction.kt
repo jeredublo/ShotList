@@ -17,7 +17,7 @@ class AddNewProjectAction(
     private val name : String,
     private val director : String,
     private val cinematographer : String,
-    private val date : Date,
+    private val date : String,
 ) : BaseAction<ProjectListState> {
 
     override suspend fun performAction(currentState: ProjectListState, viewModel: MVIViewModel<ProjectListState>) {

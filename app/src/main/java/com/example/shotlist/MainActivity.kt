@@ -10,3 +10,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 }
+
+
+// TODO: make a template for activity main since we are getting scrwewed by nav graph

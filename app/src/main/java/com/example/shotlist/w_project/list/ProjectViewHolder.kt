@@ -19,12 +19,7 @@ class ProjectViewHolder(inflater: LayoutInflater, parent: ViewGroup) : RecyclerV
 
         // icon - same for all for now. eventually want to change image based on project type
         val imageUrl = ""
-        itemView.findViewById<ImageView>(R.id.card_icon)?.let {
-            Glide.with(itemView)
-                .load(imageUrl)
-                .centerCrop()
-                .into(it)
-        }
+        itemView.findViewById<ImageView>(R.id.card_icon)?.setImageResource(R.drawable.ic_baseline_playlist_play_24)
 
         // production date string
         itemView.findViewById<TextView>(R.id.production_date)?.text = project.date
