@@ -15,5 +15,9 @@
   <fragment
       android:id="@+id/newProjectFragment"
       android:name="com.example.shotlist.ww_project_create.CreateProjectFragment"
-      android:label="NewProjectFragment" />
+      android:label="NewProjectFragment" >
+    <action
+        android:id="@+id/action_newProjectFragment_to_projectListFragment"
+        app:destination="@id/projectListFragment" />
+  </fragment>
 </navigation>
