@@ -10,27 +10,23 @@ import java.util.UUID
 
 
 class DoneButtonClickedAction(
-    private val repo : SLRepository,
-    private val name : String,
-    private val director : String,
-    private val cinematographer : String,
-    private val date : String,
-) : BaseAction<CreateProjectState> {
+    private val repo : SLRepository, ) : BaseAction<CreateProjectState>
+{
     override suspend fun performAction(currentState: CreateProjectState, viewModel: MVIViewModel<CreateProjectState>) {
         // done button clicked on Create Project screen
-        // need to call add new project action
 
         // 1. create new project
         val uniqueID = UUID.randomUUID().toString()
         val project = Project(uniqueID,
-                              name,
-                              director,
-                              cinematographer,
-                              date)
+                              currentState.name,
+                              currentState.director,
+                              currentState.cinematographer,
+                              currentState.date
+                            )
         // 2. add project to db
-        repo.addProject(project).collect {
-            // 3. send update to our state
-            projects -> viewModel.sendUpdate(ProjectListUpdater(projects))
-        }
+        repo.addProject(project)
+
+        // 3. navigate back to the project screen (for now. eventually would go to the shotlist)
+
     }
 }

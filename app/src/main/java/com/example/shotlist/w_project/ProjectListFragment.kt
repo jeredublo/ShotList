@@ -19,6 +19,7 @@ import com.example.shotlist.w_project.actions.InitProjectsAction
 import com.example.shotlist.w_project.actions.ProjectClickedAction
 import com.example.shotlist.w_project.data_structs.ProjectListState
 import com.example.shotlist.w_project.list.ProjectAdapter
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import kotlinx.coroutines.Dispatchers
 
 class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(ProjectListViewModel::class.java, R.layout.projectlist_fragment)
@@ -71,7 +72,7 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
             is DataResult.Loading -> {
                 view?.run {
                     //loading spinner needs to spin
-                    findViewById<ProgressBar>(R.id.loading_spinner)?.visibility = View.VISIBLE
+                    findViewById<CircularProgressIndicator>(R.id.loading_spinner)?.visibility = View.VISIBLE
                     findViewById<RecyclerView>(R.id.projectList_list)?.visibility = View.GONE
                     findViewById<TextView>(R.id.error_message)?.visibility = View.GONE
                     findViewById<TextView>(R.id.add_project_button)?.visibility = View.VISIBLE
@@ -81,7 +82,7 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
 
             is DataResult.Success -> {
                 view?.run {
-                    findViewById<ProgressBar>(R.id.loading_spinner)?.visibility = View.GONE
+                    findViewById<CircularProgressIndicator>(R.id.loading_spinner)?.visibility = View.GONE
 
                 }
 
@@ -107,7 +108,7 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
             }
             is DataResult.Error -> {
                 view?.run {
-                    findViewById<ProgressBar>(R.id.loading_spinner)?.visibility = View.GONE
+                    findViewById<CircularProgressIndicator>(R.id.loading_spinner)?.visibility = View.GONE
                     findViewById<TextView>(R.id.error_message)?.text = "Error loading your projects"
                     findViewById<RecyclerView>(R.id.projectList_list)?.visibility = View.GONE
                     findViewById<TextView>(R.id.add_project_button)?.visibility = View.GONE
