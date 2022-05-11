@@ -1,6 +1,7 @@
 package com.example.shotlist.repository
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -21,6 +22,10 @@ interface SLDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllProjects(projects : List<Project>)
+
+    @Delete(entity = Project::class)
+    fun deleteProject(projToDelete: Project)
+
 
 
     // === SHOTS ===

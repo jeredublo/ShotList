@@ -15,6 +15,7 @@ import com.example.shotlist.w_project.actions.AddButtonClickedAction
 import com.example.shotlist.w_project.actions.FilterClickedAction
 import com.example.shotlist.w_project.actions.InitProjectsAction
 import com.example.shotlist.w_project.actions.ProjectClickedAction
+import com.example.shotlist.w_project.actions.ProjectLongPressedAction
 import com.example.shotlist.w_project.data_structs.ProjectListState
 import com.example.shotlist.w_project.list.ProjectAdapter
 import com.google.android.material.progressindicator.CircularProgressIndicator
@@ -36,6 +37,10 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
 
     override fun initUI(view: View) {
         // initialize the adapter and click listeners
+        val repo = context?.let {
+            val dao = SLDatabase.getDatabase(it).slDao()
+            SLRepository(dao, Dispatchers.IO)
+        }
 
         // Filter Listener
         view.findViewById<TextView>(R.id.filter_text).setOnClickListener {
@@ -43,9 +48,12 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
         }
 
         // Recycler view listener
-        listAdapter = ProjectAdapter {
-            viewModel.performAction(ProjectClickedAction(it.projectId))
-        }
+        listAdapter = ProjectAdapter (
+            { viewModel.performAction(ProjectClickedAction(it.projectId))},
+            {
+                repo?.let {
+                it1 -> ProjectLongPressedAction(it1, it.projectId) }?.let {
+                it2 -> viewModel.performAction(it2) } })
         view.findViewById<RecyclerView>(R.id.projectList_list).run {
             layoutManager = LinearLayoutManager(activity)
             adapter = listAdapter

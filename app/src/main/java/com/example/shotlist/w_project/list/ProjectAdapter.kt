@@ -8,14 +8,18 @@ import com.example.shotlist.w_project.data_structs.Project
 
 
 class ProjectAdapter(
-    private val onClick: ((Project) -> Unit)? = null) : ListAdapter<Project, ProjectViewHolder>(DiffCallback())
+    private val onClick: ((Project) -> Unit)? = null,
+    private val onLongClick: ((Project) -> Unit)? = null,
+) : ListAdapter<Project, ProjectViewHolder>(DiffCallback())
 {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ProjectViewHolder(LayoutInflater.from(parent.context), parent)
 
-    override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) {
         holder.bind(currentList[position], onClick)
+        holder.bind(currentList[position], onLongClick) // TODO: ask chris if this works
+    }
 
     override fun getItemCount() =
         currentList.size

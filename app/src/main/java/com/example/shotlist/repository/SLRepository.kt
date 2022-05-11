@@ -47,6 +47,23 @@ class SLRepository(
         }.flowOn(dispatcher)
     }
 
+    /**
+     * deleteProject(Project). For deleting an existing  project. returns new list
+     */
+    suspend fun deleteProject(projectIdToDelete: String) : Flow<DataResult<List<Project>>>  {
+        return flow {
+            try {
+                emit(DataResult.Loading)
+                val project = dao.findProject(projectIdToDelete)    // grab proj from id
+                dao.deleteProject(project[0])               // deleting proj
+                val finalList = dao.getAllProjects()        // getting new list
+                emit(DataResult.Success(finalList))         // sending it back
+            } catch (exception: Exception) {
+                emit(DataResult.Error(exception.toString()))
+            }
+        }.flowOn(dispatcher)
+    }
+
 
 
     // ==SHOTS==
