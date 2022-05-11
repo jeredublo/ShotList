@@ -9,29 +9,29 @@
     app:cardCornerRadius="10dp"
     android:layout_margin="10dp">
 
-  <androidx.constraintlayout.widget.ConstraintLayout
+  <androidx.gridlayout.widget.GridLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_gravity="center">
+      android:layout_gravity="center"
+      app:rowCount="2"
+      app:columnCount="2">
 
     <ImageView
         android:id="@+id/card_icon"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/ic_baseline_playlist_play_24"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        />
+        app:layout_row="0"
+        app:layout_column="0"
+        app:layout_rowSpan="2" />
 
     <TextView
         android:id="@+id/project_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/card_icon"
+        app:layout_row="0"
+        app:layout_column="1"
         android:textSize="10sp"
         />
 
@@ -40,9 +40,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/project_name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/card_icon"
+        app:layout_row="1"
+        app:layout_column="1"
         android:textSize="10sp" />
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.gridlayout.widget.GridLayout>
 </androidx.cardview.widget.CardView>
