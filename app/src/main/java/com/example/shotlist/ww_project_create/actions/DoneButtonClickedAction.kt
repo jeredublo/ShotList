@@ -24,13 +24,11 @@ class DoneButtonClickedAction(
                               currentState.cinematographer,
                               currentState.date
                             )
+
         // 2. add project to db
-        repo.addProject(project).collect {
-            // 3. navigate back to the project screen (for now. eventually would go to the shotlist)
-            viewModel.sendEvent(NavigateToProjectListEvent())
-        }
+        repo.addProject(project).collect{}
 
-//        viewModel.sendEvent(NavigateToProjectListEvent(project))
-
+        // 3. navigate back to the project screen (for now. eventually would go to the shotlist)
+        viewModel.sendEvent(NavigateToProjectListEvent())
     }
 }

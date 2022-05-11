@@ -82,6 +82,7 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
                     findViewById<CircularProgressIndicator>(R.id.loading_spinner)?.visibility = View.VISIBLE
                     findViewById<RecyclerView>(R.id.projectList_list)?.visibility = View.GONE
                     findViewById<TextView>(R.id.error_message)?.visibility = View.GONE
+                    findViewById<TextView>(R.id.project_count)?.visibility = View.GONE
                     findViewById<TextView>(R.id.add_project_button)?.visibility = View.VISIBLE
                 }
             }
@@ -91,20 +92,22 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
                 if (newState.projectList.data.isEmpty()) { // No projects found
                     view?.run {
                         findViewById<RecyclerView>(R.id.projectList_list)?.visibility = View.GONE
-                        findViewById<TextView>(R.id.error_message).run {
+                        findViewById<TextView>(R.id.project_count).run {
                             visibility = View.VISIBLE
                             text = "No projects found"
                         }
+                        findViewById<TextView>(R.id.error_message)?.visibility = View.GONE
                         findViewById<TextView>(R.id.add_project_button)?.visibility = View.VISIBLE
                     }
                  }
                  else {                                     // Projects found
                      view?.run {
                          findViewById<RecyclerView>(R.id.projectList_list)?.visibility = View.VISIBLE
-                         findViewById<TextView>(R.id.error_message).run {
+                         findViewById<TextView>(R.id.project_count).run {
                              visibility = View.VISIBLE
                              text = "Projects found: ${newState.projectList.data.size}"
                          }
+                         findViewById<TextView>(R.id.error_message)?.visibility = View.GONE
                          findViewById<TextView>(R.id.add_project_button)?.visibility = View.VISIBLE
 
                      }
@@ -116,6 +119,7 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
                     findViewById<CircularProgressIndicator>(R.id.loading_spinner)?.visibility = View.GONE
                     findViewById<TextView>(R.id.error_message)?.visibility = View.VISIBLE
                     findViewById<TextView>(R.id.error_message)?.text = "Error loading your projects"
+                    findViewById<TextView>(R.id.project_count)?.visibility = View.GONE
                     findViewById<RecyclerView>(R.id.projectList_list)?.visibility = View.GONE
                     findViewById<TextView>(R.id.add_project_button)?.visibility = View.GONE
 
