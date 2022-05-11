@@ -1,6 +1,7 @@
 package com.example.shotlist.w_project
 
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +15,7 @@ import com.example.shotlist.repository.SLRepository
 import com.example.shotlist.w_project.actions.AddButtonClickedAction
 import com.example.shotlist.w_project.actions.FilterClickedAction
 import com.example.shotlist.w_project.actions.InitProjectsAction
-import com.example.shotlist.w_project.actions.ProjectClickedAction
+import com.example.shotlist.w_project.actions.ProjectPressedAction
 import com.example.shotlist.w_project.actions.ProjectLongPressedAction
 import com.example.shotlist.w_project.data_structs.ProjectListState
 import com.example.shotlist.w_project.list.ProjectAdapter
@@ -49,7 +50,7 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
 
         // Recycler view listener
         listAdapter = ProjectAdapter (
-            { viewModel.performAction(ProjectClickedAction(it.projectId))},
+            { viewModel.performAction(ProjectPressedAction(it.projectId))},
             {
                 repo?.let {
                 it1 -> ProjectLongPressedAction(it1, it.projectId) }?.let {
