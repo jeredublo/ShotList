@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.shotlist.R
 import com.example.shotlist.w_project.data_structs.Project
 

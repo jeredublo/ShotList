@@ -1,9 +1,7 @@
 package com.example.shotlist.w_project
 
 import android.view.View
-import android.widget.Filter
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +23,7 @@ import kotlinx.coroutines.Dispatchers
 class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(ProjectListViewModel::class.java, R.layout.projectlist_fragment)
 {
 
-    lateinit var adapter: ProjectAdapter
+    private lateinit var adapter: ProjectAdapter
 
     override fun getInitAction(): BaseAction<ProjectListState>? {
         return context?.let {
@@ -45,7 +43,7 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
         }
 
         // Recycler view listener
-        adapter = ProjectAdapter() {
+        adapter = ProjectAdapter {
             viewModel.performAction(ProjectClickedAction(it.projectId))
         }
         view.findViewById<RecyclerView>(R.id.projectList_list).run {
@@ -81,22 +79,24 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
 
             is DataResult.Success -> {
                 view?.findViewById<CircularProgressIndicator>(R.id.loading_spinner)?.visibility = View.GONE
-                // No projects found
-                if (newState.projectList.data.isEmpty()) {
+                if (newState.projectList.data.isEmpty()) { // No projects found
                     view?.run {
                         findViewById<RecyclerView>(R.id.projectList_list)?.visibility = View.GONE
-                        findViewById<TextView>(R.id.error_message)?.visibility = View.VISIBLE
-                        findViewById<TextView>(R.id.error_message)?.text = "No projects found"
+                        findViewById<TextView>(R.id.error_message).run {
+                            visibility = View.VISIBLE
+                            text = "No projects found"
+                        }
                         findViewById<TextView>(R.id.add_project_button)?.visibility = View.VISIBLE
                     }
                  }
-                 else { // Projects found
+                 else {                                     // Projects found
                      view?.run {
-                         findViewById<RecyclerView>(R.id.projectList_list).run {
+                         findViewById<RecyclerView>(R.id.projectList_list)?.visibility = View.VISIBLE
+//                         findViewById<RecyclerView>(R.id.projectList_list)
+                         findViewById<TextView>(R.id.error_message).run {
                              visibility = View.VISIBLE
+                             text = "Projects found: ${newState.projectList.data.size}"
                          }
-                         findViewById<TextView>(R.id.error_message)?.visibility = View.VISIBLE
-                         findViewById<TextView>(R.id.error_message)?.text = "Projects found: ${newState.projectList.data.size}"
                          findViewById<TextView>(R.id.add_project_button)?.visibility = View.VISIBLE
 
                      }
