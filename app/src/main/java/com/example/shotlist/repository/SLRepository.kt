@@ -7,11 +7,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-// want to run on the IO but we add it as a param so that we can change it out for testing later
-// need the Dao in here as well when the db is added later
 class SLRepository(
     private val dao : SLDao,
-//    private val service: SLService,
     private val dispatcher: CoroutineDispatcher)
 {
 

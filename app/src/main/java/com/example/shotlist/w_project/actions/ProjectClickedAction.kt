@@ -4,13 +4,11 @@ import com.example.shotlist.base_mvi.BaseAction
 import com.example.shotlist.base_mvi.MVIViewModel
 import com.example.shotlist.w_project.data_structs.ProjectListState
 
-// import kotlinx.coroutines.flow.collect
-
 class ProjectClickedAction(
-    val projectId : String,
-) : BaseAction<ProjectListState>
-{
-    override suspend fun performAction(currentState: ProjectListState, viewModel: MVIViewModel<ProjectListState>) {
+    val projectId : String, ) : BaseAction<ProjectListState> {
 
+    override suspend fun performAction(currentState: ProjectListState, viewModel: MVIViewModel<ProjectListState>) {
+        // evoke event to navigate to the Shotlist screen
     }
+
 }

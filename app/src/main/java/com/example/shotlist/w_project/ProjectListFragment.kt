@@ -23,7 +23,7 @@ import kotlinx.coroutines.Dispatchers
 class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(ProjectListViewModel::class.java, R.layout.projectlist_fragment)
 {
 
-    private lateinit var adapter: ProjectAdapter
+    private lateinit var listAdapter: ProjectAdapter
 
     override fun getInitAction(): BaseAction<ProjectListState>? {
         return context?.let {
@@ -43,12 +43,12 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
         }
 
         // Recycler view listener
-        adapter = ProjectAdapter {
+        listAdapter = ProjectAdapter {
             viewModel.performAction(ProjectClickedAction(it.projectId))
         }
         view.findViewById<RecyclerView>(R.id.projectList_list).run {
             layoutManager = LinearLayoutManager(activity)
-            adapter = adapter
+            adapter = listAdapter
         }
 
         // Add project button listener
@@ -92,7 +92,6 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
                  else {                                     // Projects found
                      view?.run {
                          findViewById<RecyclerView>(R.id.projectList_list)?.visibility = View.VISIBLE
-//                         findViewById<RecyclerView>(R.id.projectList_list)
                          findViewById<TextView>(R.id.error_message).run {
                              visibility = View.VISIBLE
                              text = "Projects found: ${newState.projectList.data.size}"
@@ -100,7 +99,7 @@ class ProjectListFragment : MVIFragment<ProjectListState, ProjectListViewModel>(
                          findViewById<TextView>(R.id.add_project_button)?.visibility = View.VISIBLE
 
                      }
-                    adapter.submitList(newState.projectList.data) // TODO: update the templates to use diffutil now
+                    listAdapter.submitList(newState.projectList.data) // TODO: update the templates to use diffutil now
                  }
             }
             is DataResult.Error -> {

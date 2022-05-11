@@ -6,7 +6,7 @@ import com.example.shotlist.base_mvi.BaseEvent
 import com.example.shotlist.w_project.ProjectListFragment
 import com.example.shotlist.w_project.ProjectListFragmentDirections
 
-class NavigateToAddProjectEvent() : BaseEvent {
+class NavigateToCreateProjectEvent() : BaseEvent {
 
     override fun performEvent(fragment: Fragment) {
         val action = ProjectListFragmentDirections.actionProjectListFragmentToNewProjectFragment()
