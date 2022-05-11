@@ -24,7 +24,7 @@ class CreateProjectFragment : MVIFragment<CreateProjectState, CreateProjectViewM
     }
 
     override fun initUI(view: View) {
-        // attach click listener for the Done button
+        // attach click listener for the Done button - will take evetyhing in state and create a new proj and add to db
         view.findViewById<Button>(R.id.done_button).setOnClickListener{
             takeUserInput(view)
             context?.let {
@@ -39,10 +39,9 @@ class CreateProjectFragment : MVIFragment<CreateProjectState, CreateProjectViewM
         // no loading/success/fail for this
     }
 
-
-
     // Helper function to grab all the user text and send it to our state
     private fun takeUserInput(view: View) {
+        // should this be here, or should i pack it all into the done button action
         view.run{
             findViewById<TextInputLayout>(R.id.project_name).editText?.getText().toString().let {
                 viewModel.sendUpdate(CPNameUpdater(it))

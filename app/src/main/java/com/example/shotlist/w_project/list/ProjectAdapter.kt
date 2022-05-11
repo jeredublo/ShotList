@@ -8,14 +8,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.shotlist.w_project.data_structs.Project
 
 
-class ProjectAdapter(private val onClick: ((Project) -> Unit)? = null) : ListAdapter<Project, ProjectViewHolder>(DiffCallback())
+class ProjectAdapter(
+    private val onClick: ((Project) -> Unit)? = null) : ListAdapter<Project, ProjectViewHolder>(DiffCallback())
 {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ProjectViewHolder(LayoutInflater.from(parent.context), parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        ProjectViewHolder(LayoutInflater.from(parent.context), parent)
 
-    override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) = holder.bind(currentList[position], onClick)
+    override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) =
+        holder.bind(currentList[position], onClick)
 
-    override fun getItemCount() = currentList.size
+    override fun getItemCount() =
+        currentList.size
 }
 
 

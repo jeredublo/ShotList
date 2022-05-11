@@ -19,6 +19,5 @@ class FilterClickedAction() : BaseAction<ProjectListState> {
             SortedBy.DateDesc -> SortedBy.NameAsc
         }
         viewModel.sendUpdate(FilterSortUpdater(newSortBy = newSort))
-
     }
 }

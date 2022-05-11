@@ -6,6 +6,7 @@ import com.example.shotlist.repository.SLRepository
 import com.example.shotlist.ww_project_create.data_structs.CreateProjectState
 import com.example.shotlist.w_project.data_structs.Project
 import com.example.shotlist.w_project.updaters.ProjectListUpdater
+import com.example.shotlist.ww_project_create.events.NavigateToProjectListEvent
 import java.util.UUID
 
 
@@ -24,9 +25,12 @@ class DoneButtonClickedAction(
                               currentState.date
                             )
         // 2. add project to db
-        repo.addProject(project)
+        repo.addProject(project).collect {
+            // 3. navigate back to the project screen (for now. eventually would go to the shotlist)
+            viewModel.sendEvent(NavigateToProjectListEvent())
+        }
 
-        // 3. navigate back to the project screen (for now. eventually would go to the shotlist)
+//        viewModel.sendEvent(NavigateToProjectListEvent(project))
 
     }
 }

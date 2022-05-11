@@ -37,13 +37,13 @@ class SLRepository(
     /**
      * addProject(newProject). For adding a new and editing an existing project (?).
      */
-    suspend fun addProject(newProject : Project) : Flow<DataResult<List<Project>>> {
+    suspend fun addProject(newProject : Project) : Flow<DataResult<Project>> {
         return flow {
             try {
                 emit(DataResult.Loading)
-                dao.insertProject(newProject);          // add to db
-                val finProjList = dao.getAllProjects()
-                emit(DataResult.Success(finProjList)) // send back complete-r list
+                dao.insertProject(newProject)          // add to db
+//                val finProjList = dao.getAllProjects()
+                emit(DataResult.Success(newProject)) // send back complete-r list
             } catch (exception: Exception) {
                 emit(DataResult.Error(exception.toString()))
             }
