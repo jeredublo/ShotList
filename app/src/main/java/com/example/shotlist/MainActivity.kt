@@ -2,12 +2,16 @@ package com.example.shotlist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import com.example.shotlist.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContent {
+            Navigation()
+        }
+    //setContentView(R.layout.activity_main)
     }
 }
 

@@ -9,7 +9,8 @@ import com.example.shotlist.w_project.data_structs.Project
 
 class ProjectAdapter(
     private val onClick: ((Project) -> Unit)? = null,
-    private val onLongClick: ((Project) -> Unit)? = null, ) : ListAdapter<Project, ProjectViewHolder>(DiffCallback())
+    private val onLongClick: ((Project) -> Unit)? = null, )
+    : ListAdapter<Project, ProjectViewHolder>(DiffCallback())
 {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =

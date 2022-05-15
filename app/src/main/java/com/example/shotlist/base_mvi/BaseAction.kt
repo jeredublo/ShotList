@@ -1,8 +1,10 @@
 package com.example.shotlist.base_mvi
 
-interface BaseAction<State> {
+interface BaseAction<MyState> {
     suspend fun performAction(
-        currentState: State,
-        viewModel: MVIViewModel<State>
+        currentState: MyState,
+        sendUpdate: (BaseUpdater<MyState>) -> Unit,
+        sendEvent: (BaseEvent) -> Unit
+//        viewModel: MVIViewModel<State>
     )
 }

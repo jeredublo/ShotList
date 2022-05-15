@@ -10,8 +10,12 @@ import com.example.shotlist.w_project.data_structs.Project
 
 class ProjectViewHolder(inflater: LayoutInflater, parent: ViewGroup) : RecyclerView.ViewHolder(inflater.inflate(R.layout.project_card, parent, false)) {
 
-    fun bind(project: Project, onClick: ((Project) -> Unit)?) {
-        onClick?.let { itemView.setOnClickListener { it(project) } }
+    fun bind(
+        project: Project,
+        onClickFunction: ((Project) -> Unit)?)
+    {
+
+        onClickFunction?.let { itemView.setOnClickListener { it(project) } }
 
         // project name
         itemView.findViewById<TextView>(R.id.project_name)?.text = project.name
@@ -20,7 +24,7 @@ class ProjectViewHolder(inflater: LayoutInflater, parent: ViewGroup) : RecyclerV
         itemView.findViewById<ImageView>(R.id.card_icon)?.setImageResource(R.drawable.ic_baseline_playlist_play_24)
 
         // production date string
-        itemView.findViewById<TextView>(R.id.production_date)?.text = project.date
+        itemView.findViewById<TextView>(R.id.production_date)?.text = "Production Date: " + project.date
 
     }
 
