@@ -1,17 +1,13 @@
 package com.example.shotlist.w_project.events
 
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import android.content.Context
 import com.example.shotlist.base_mvi.BaseEvent
-import com.example.shotlist.w_project.ProjectListFragment
-import com.example.shotlist.w_project.ProjectListFragmentDirections
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-class NavigateToCreateProjectEvent() : BaseEvent {
+class NavigateToCreateProjectEvent(/*add your extra stuff for toastsetc here*/) : BaseEvent {
 
-    override fun performEvent(fragment: Fragment) {
-        val action = ProjectListFragmentDirections.actionProjectListFragmentToNewProjectFragment()
-        fragment.findNavController().navigate(action)
-
+    override fun performEvent(context: Context, navigator: DestinationsNavigator) {
+//        navigator.navigate()    // context for dialogs and toasts and stuff that need it
     }
 
 }

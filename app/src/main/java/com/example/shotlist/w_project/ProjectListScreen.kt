@@ -29,10 +29,12 @@ import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.shotlist.R
+import com.ramcosta.composedestinations.annotation.RootNavGraph
 
-
+@RootNavGraph(start = true) // sets this as the start destination of the default nav graph
 @Destination
 @Composable
 fun ProjectListScreen(navigator: DestinationsNavigator) {
@@ -50,7 +52,7 @@ fun ProjectListScreen(navigator: DestinationsNavigator) {
 // render screen based on state
 fun ProjectListScreenContent(state: ProjectListState, performAction: (BaseAction<ProjectListState>) -> Unit) {
     Column() {      // this is the page
-        Row(horizontalArrangement = Arrangement.SpaceBetween) {     // this is the top
+        Row(modifier = Modifier.fillMaxWidth().padding(50.dp), horizontalArrangement = Arrangement.SpaceBetween) {     // this is the top
             Row(horizontalArrangement = Arrangement.Start) {    // row with filter
                 Text(state.sortBy.title)
                 Image(painterResource(state.sortBy.icon),"icon for filter")
