@@ -81,6 +81,7 @@ fun ProjectListScreenContent(state: ProjectListState, repo: SLRepository, perfor
         }
         when (state.projectList) {
             is DataResult.Loading -> {
+                Text("Loading")
                 Column(modifier = Modifier.fillMaxSize(),
                        verticalArrangement = Arrangement.Center,
                        horizontalAlignment = Alignment.CenterHorizontally) {
@@ -89,28 +90,29 @@ fun ProjectListScreenContent(state: ProjectListState, repo: SLRepository, perfor
                 }
             }
             is DataResult.Success -> {
-                LazyColumn(modifier = Modifier
-                    .fillMaxSize()
-                    .padding(10.dp)) {  // lazycolumn is recycler view
-                    items(state.projectList.data) { project ->
-                        Card(modifier = Modifier
-                            .fillMaxWidth()
-                            .combinedClickable(
-                                onClick = { performAction(ProjectLongPressedAction(repo, project.projectId)) })
-                        )
-                        {
-                            Row {
-                                // icon
-                                Image(painterResource(R.drawable.ic_baseline_playlist_play_24), "shotlist icon")
-                                // project name, and then production date
-                                Column {
-                                    Text(project.name)
-                                    Text(project.date)
-                                }
-                            }
-                        }
-                    }
-                }
+                Text("Success")
+//                LazyColumn(modifier = Modifier
+//                    .fillMaxSize()
+//                    .padding(10.dp)) {  // lazycolumn is recycler view
+//                    items(state.projectList.data) { project ->
+//                        Card(modifier = Modifier
+//                            .fillMaxWidth()
+//                            .combinedClickable(
+//                                onClick = { performAction(ProjectLongPressedAction(repo, project.projectId)) })
+//                        )
+//                        {
+//                            Row {
+//                                // icon
+//                                Image(painterResource(R.drawable.ic_baseline_playlist_play_24), "shotlist icon")
+//                                // project name, and then production date
+//                                Column {
+//                                    Text(project.name)
+//                                    Text(project.date)
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
                 Button(
                     onClick = { performAction(AddButtonClickedAction()) },
                     contentPadding = PaddingValues(
@@ -132,6 +134,7 @@ fun ProjectListScreenContent(state: ProjectListState, repo: SLRepository, perfor
             }
 
             is DataResult.Error -> {
+                Text("Error")
                 Log.e("error render", state.projectList.errorMessage)
                 Text("Error loading your projects")
             }
