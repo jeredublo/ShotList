@@ -1,15 +1,11 @@
 package com.example.shotlist
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.myapplication.ui.theme.ShotlistTheme
-import com.example.shotlist.R
-import com.example.shotlist.w_project.ProjectListScreen
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
