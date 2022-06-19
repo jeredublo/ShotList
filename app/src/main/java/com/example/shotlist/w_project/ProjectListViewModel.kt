@@ -12,7 +12,6 @@ import androidx.navigation.NavBackStackEntry
 import androidx.savedstate.SavedStateRegistryOwner
 import com.example.shotlist.base_mvi.MVIViewModel
 import com.example.shotlist.w_project.data_structs.ProjectListState
-import com.example.shotlist.ww_project_create.ProjectListViewModel
 import com.example.shotlist.ww_project_create.ViewModelFactory
 
 

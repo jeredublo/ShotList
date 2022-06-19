@@ -9,7 +9,7 @@ import com.example.shotlist.w_project.events.NavigateToCreateProjectEvent
 import com.example.shotlist.w_project.events.NavigateToShotListEvent
 
 class ProjectPressedAction(
-    val projectId : String, ) : BaseAction<ProjectListState> {
+    private val projectId : String, ) : BaseAction<ProjectListState> {
 
     override suspend fun performAction(currentState: ProjectListState,
         sendUpdate: (BaseUpdater<ProjectListState>) -> Unit,

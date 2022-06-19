@@ -16,9 +16,11 @@ import java.util.UUID
 class DoneButtonClickedAction(
     private val repo : SLRepository, ) : BaseAction<CreateProjectState>
 {
-    override suspend fun performAction(currentState: CreateProjectState,
+    override suspend fun performAction(
+        currentState: CreateProjectState,
         sendUpdate: (BaseUpdater<CreateProjectState>) -> Unit,
-        sendEvent: (BaseEvent) -> Unit) {
+        sendEvent: (BaseEvent) -> Unit)
+    {
         // done button clicked on Create Project screen
 
         // 1. create new project

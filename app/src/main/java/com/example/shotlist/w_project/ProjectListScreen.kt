@@ -1,7 +1,6 @@
 package com.example.shotlist.w_project
 
 import android.util.Log
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -13,12 +12,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Icon
+import androidx.compose.material.Text
+
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -44,7 +43,7 @@ import kotlinx.coroutines.Dispatchers
 @Destination
 @Composable
 fun ProjectListScreen(navigator: DestinationsNavigator) {
-    val viewModel = com.example.shotlist.ww_project_create.projectListViewModel()
+    val viewModel = projectListViewModel()
 
     val dao = SLDatabase.getDatabase(LocalContext.current.applicationContext).slDao()
     val repo = SLRepository(dao, Dispatchers.IO)
@@ -54,11 +53,10 @@ fun ProjectListScreen(navigator: DestinationsNavigator) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 // render screen based on state
 fun ProjectListScreenContent(state: ProjectListState, repo: SLRepository, performAction: (BaseAction<ProjectListState>) -> Unit) {
-    Column() {      // this is the page
+    Column {      // this is the page
         Row(
             modifier = Modifier
                 .fillMaxWidth()
