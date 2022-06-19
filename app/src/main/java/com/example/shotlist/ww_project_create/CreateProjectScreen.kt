@@ -1,4 +1,4 @@
-package com.example.shotlist.w_project
+package com.example.shotlist.ww_project_create
 
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -33,31 +33,33 @@ import com.example.shotlist.repository.SLDatabase
 import com.example.shotlist.repository.SLRepository
 import com.example.shotlist.w_project.actions.AddButtonClickedAction
 import com.example.shotlist.w_project.actions.FilterClickedAction
-import com.example.shotlist.w_project.actions.InitProjectsAction
 import com.example.shotlist.w_project.data_structs.ProjectListState
+import com.example.shotlist.ww_project_create.data_structs.CreateProjectState
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.Dispatchers
 
-@RootNavGraph(start = true) // sets this as the start destination of the default nav graph
 @Destination
 @Composable
-fun ProjectListScreen(navigator: DestinationsNavigator) {
-    val viewModel = com.example.shotlist.ww_project_create.projectListViewModel()
+fun CreateProjectScreen(navigator: DestinationsNavigator) {
+    val viewModel = createProjectViewModel()
 
     val dao = SLDatabase.getDatabase(LocalContext.current.applicationContext).slDao()
     val repo = SLRepository(dao, Dispatchers.IO)
 
-    BaseScreen(navigator = navigator, viewModel = viewModel, InitProjectsAction(repo)) {
-        ProjectListScreenContent(it, repo, viewModel.performAction)
+    BaseScreen(navigator = navigator, viewModel = viewModel, ) {
+        CreateProjectScreenContent(it, repo, viewModel.performAction)
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 // render screen based on state
-fun ProjectListScreenContent(state: ProjectListState, repo: SLRepository, performAction: (BaseAction<ProjectListState>) -> Unit) {
+fun CreateProjectScreenContent(
+    state: CreateProjectState,
+    repo: SLRepository,
+    performAction: (BaseAction<CreateProjectState>) -> Unit)
+{
     Column() {      // this is the page
         Row(
             modifier = Modifier
@@ -68,7 +70,7 @@ fun ProjectListScreenContent(state: ProjectListState, repo: SLRepository, perfor
                 modifier = Modifier.clickable { performAction(FilterClickedAction()) },
                 horizontalArrangement = Arrangement.Start) {    // row with filter
                 Text(state.sortBy.title)
-                Image(painterResource(state.sortBy.icon),"icon for filter")
+                Image(painterResource(state.sortBy.icon), "icon for filter")
             }
             Text("Projects found 0")
         }
