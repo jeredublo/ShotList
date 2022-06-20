@@ -7,7 +7,7 @@ import com.example.shotlist.ww_project_create.data_structs.CreateProjectState
 import com.example.shotlist.ww_project_create.updaters.CPCinematographerUpdater
 import com.example.shotlist.ww_project_create.updaters.CPDirectorUpdater
 
-class CreateCinaFieldChangedAction(private val newCina : String) : BaseAction<CreateProjectState> {
+class CPCinaFieldChangedAction(private val newCina : String) : BaseAction<CreateProjectState> {
 
     override suspend fun performAction(currentState: CreateProjectState, sendUpdate: (BaseUpdater<CreateProjectState>) -> Unit, sendEvent: (BaseEvent) -> Unit) {
         // Director field changed.. send update

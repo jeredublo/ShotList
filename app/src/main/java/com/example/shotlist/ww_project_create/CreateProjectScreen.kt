@@ -9,10 +9,10 @@ import com.example.shotlist.base_mvi.BaseAction
 import com.example.shotlist.base_mvi.BaseScreen
 import com.example.shotlist.repository.SLDatabase
 import com.example.shotlist.repository.SLRepository
-import com.example.shotlist.ww_project_create.actions.CreateCinaFieldChangedAction
-import com.example.shotlist.ww_project_create.actions.CreateDateFieldChangedAction
-import com.example.shotlist.ww_project_create.actions.CreateDirFieldChangedAction
-import com.example.shotlist.ww_project_create.actions.CreateNameFieldChangedAction
+import com.example.shotlist.ww_project_create.actions.CPCinaFieldChangedAction
+import com.example.shotlist.ww_project_create.actions.CPDateFieldChangedAction
+import com.example.shotlist.ww_project_create.actions.CPDirFieldChangedAction
+import com.example.shotlist.ww_project_create.actions.CPNameFieldChangedAction
 import com.example.shotlist.ww_project_create.data_structs.CreateProjectState
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -46,22 +46,22 @@ fun CreateProjectScreenContent(
     Column {      // this is the page
         OutlinedTextField(
             value = projectName,
-            onValueChange = { name : String -> performAction(CreateNameFieldChangedAction(name)); projectName = name},
+            onValueChange = { name : String -> performAction(CPNameFieldChangedAction(name)); projectName = name},
             label =  { Text(text = "Project Name") },
         )
         OutlinedTextField(
             value = projectDirector,
-            onValueChange = { dir : String -> performAction(CreateDirFieldChangedAction(dir))},
+            onValueChange = { dir : String -> performAction(CPDirFieldChangedAction(dir))},
             label = { Text(text = "Director") }
         )
         OutlinedTextField(
             value = projectCinematographer,
-            onValueChange = { cine : String -> performAction(CreateCinaFieldChangedAction(cine))},
+            onValueChange = { cine : String -> performAction(CPCinaFieldChangedAction(cine))},
             label = { Text(text = "Cinematographer") }
         )
         OutlinedTextField(
             value = projectDate,
-            onValueChange = { date : String -> performAction(CreateDateFieldChangedAction(date))},
+            onValueChange = { date : String -> performAction(CPDateFieldChangedAction(date))},
             label = { Text(text = "Production Date") }
         )
 

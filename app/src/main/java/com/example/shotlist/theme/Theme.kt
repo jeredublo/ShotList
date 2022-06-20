@@ -1,19 +1,26 @@
-package com.example.myapplication.ui.theme
+package com.example.shotlist.theme
 
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.darkColorScheme
+import androidx.compose.material.dynamicDarkColorScheme
+import androidx.compose.material.dynamicLightColorScheme
+import androidx.compose.material.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
+import com.example.myapplication.ui.theme.Pink40
+import com.example.myapplication.ui.theme.Pink80
+import com.example.myapplication.ui.theme.Purple40
+import com.example.myapplication.ui.theme.Purple80
+import com.example.myapplication.ui.theme.PurpleGrey40
+import com.example.myapplication.ui.theme.PurpleGrey80
+import com.example.myapplication.ui.theme.Typography
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
