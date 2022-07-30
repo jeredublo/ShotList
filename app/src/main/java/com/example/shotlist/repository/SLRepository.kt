@@ -23,7 +23,13 @@ class SLRepository(
             try {
                 emit(DataResult.Loading)
                 // Grab projects from db
-                val projectList = dao.getAllProjects()
+//                val projectList = dao.getAllProjects()
+                val projectList = listOf<Project>(
+                    Project("id num", "namaeae", "what the smith", "harrington", "july 7"),
+                    Project("id num", "chirs", "w", "harringt", "jy 7"),
+                    Project("id num", "jess", "wmith", "hangton", "july 7")
+                )
+
                 emit(DataResult.Success(projectList)) // NOTE: this might be empty if no projects exist in DB
             } catch (exception: Exception) {
                 emit(DataResult.Error(exception.toString()))

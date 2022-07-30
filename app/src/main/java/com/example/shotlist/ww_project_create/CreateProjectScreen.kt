@@ -1,9 +1,11 @@
 package com.example.shotlist.ww_project_create
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.ui.platform.LocalContext
 import com.example.shotlist.base_mvi.BaseAction
 import com.example.shotlist.base_mvi.BaseScreen
@@ -18,6 +20,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.Dispatchers
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Destination
 @Composable
 fun CreateProjectScreen(navigator: DestinationsNavigator) {
@@ -31,6 +34,7 @@ fun CreateProjectScreen(navigator: DestinationsNavigator) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 // render screen based on state
 fun CreateProjectScreenContent(

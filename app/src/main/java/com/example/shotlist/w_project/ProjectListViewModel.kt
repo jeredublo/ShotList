@@ -12,7 +12,7 @@ import androidx.navigation.NavBackStackEntry
 import androidx.savedstate.SavedStateRegistryOwner
 import com.example.shotlist.base_mvi.MVIViewModel
 import com.example.shotlist.w_project.data_structs.ProjectListState
-import com.example.shotlist.ww_project_create.ViewModelFactory
+import com.example.shotlist.w_project.ViewModelFactory
 
 
 // NOTE: Nothing to add to this file! It's all implemented in the BaseViewModel

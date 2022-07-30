@@ -1,8 +1,10 @@
 package com.example.shotlist.w_project
 
 import android.util.Log
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,11 +14,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,11 +37,14 @@ import com.example.shotlist.repository.SLRepository
 import com.example.shotlist.w_project.actions.AddButtonClickedAction
 import com.example.shotlist.w_project.actions.FilterClickedAction
 import com.example.shotlist.w_project.actions.InitProjectsAction
+import com.example.shotlist.w_project.actions.ProjectLongPressedAction
 import com.example.shotlist.w_project.data_structs.ProjectListState
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.Dispatchers
+
+import androidx.compose.foundation.lazy.items // this is important for trying to find the stuff using lazy column
 
 @RootNavGraph(start = true) // sets this as the start destination of the default nav graph
 @Destination
@@ -53,6 +60,7 @@ fun ProjectListScreen(navigator: DestinationsNavigator) {
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 // render screen based on state
 fun ProjectListScreenContent(state: ProjectListState, repo: SLRepository, performAction: (BaseAction<ProjectListState>) -> Unit) {
@@ -82,28 +90,28 @@ fun ProjectListScreenContent(state: ProjectListState, repo: SLRepository, perfor
             }
             is DataResult.Success -> {
                 Text("Success")
-//                LazyColumn(modifier = Modifier
-//                    .fillMaxSize()
-//                    .padding(10.dp)) {  // lazycolumn is recycler view
-//                    items(state.projectList.data) { project ->
-//                        Card(modifier = Modifier
-//                            .fillMaxWidth()
-//                            .combinedClickable(
-//                                onClick = { performAction(ProjectLongPressedAction(repo, project.projectId)) })
-//                        )
-//                        {
-//                            Row {
-//                                // icon
-//                                Image(painterResource(R.drawable.ic_baseline_playlist_play_24), "shotlist icon")
-//                                // project name, and then production date
-//                                Column {
-//                                    Text(project.name)
-//                                    Text(project.date)
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
+                LazyColumn(modifier = Modifier
+                    .weight(1F)
+                    .padding(10.dp)) {  // lazycolumn is recycler view
+                    items(state.projectList.data) { project ->
+                        Card(modifier = Modifier
+                            .fillMaxWidth()
+                            .combinedClickable(
+                                onClick = { performAction(ProjectLongPressedAction(repo, project.projectId)) })
+                        )
+                        {
+                            Row {
+                                // icon
+                                Image(painterResource(R.drawable.ic_baseline_playlist_play_24), "shotlist icon")
+                                // project name, and then production date
+                                Column {
+                                    Text(project.name)
+                                    Text(project.date)
+                                }
+                            }
+                        }
+                    }
+                }
                 Button(
                     onClick = { performAction(AddButtonClickedAction()) },
                     contentPadding = PaddingValues(
