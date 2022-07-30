@@ -1,8 +1,9 @@
 plugins {
   id 'com.android.application'
   id 'org.jetbrains.kotlin.android'
-  id 'androidx.navigation.safeargs.kotlin'
+//  id 'androidx.navigation.safeargs.kotlin'
   id 'kotlin-kapt'
+  id 'com.google.devtools.ksp' version '1.7.10-1.0.6'
 }
 
 android {
@@ -31,19 +32,36 @@ android {
   kotlinOptions {
     jvmTarget = '1.8'
   }
+  buildFeatures {
+    compose = true
+  }
+  composeOptions {
+    kotlinCompilerExtensionVersion '1.3.0-rc01'
+  }
+  applicationVariants.all { variant ->
+    kotlin.sourceSets {
+      getByName(variant.name) {
+        kotlin.srcDir("build/generated/ksp/${variant.name}/kotlin")
+      }
+    }
+  }
+
   namespace 'com.example.shotlist'
 }
 
 dependencies {
-  implementation 'androidx.core:core-ktx:1.7.0'
-  implementation 'androidx.appcompat:appcompat:1.4.1'
-  implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+  // Compose  & material
+  implementation 'androidx.core:core-ktx:1.8.0'
+  implementation "androidx.compose.ui:ui:1.2.0"
+  implementation "androidx.compose.ui:ui-tooling-preview:1.2.0"
+  implementation 'androidx.activity:activity-compose:1.5.1'
+  implementation("androidx.compose.material3:material3:1.0.0-alpha15")
+
+  implementation 'androidx.appcompat:appcompat:1.4.2'
+  implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
   testImplementation 'junit:junit:4.13.2'
   androidTestImplementation 'androidx.test.ext:junit:1.1.3'
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
-  // Material
-  implementation 'com.google.android.material:material:1.6.0'
 
   // Network
   implementation "com.squareup.retrofit2:retrofit:2.9.0"
@@ -52,20 +70,26 @@ dependencies {
 
   // Multi Processing
   implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
-  implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
-  implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
+  implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+  implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
   implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
-  // Navigation
-  implementation 'androidx.navigation:navigation-fragment-ktx:2.5.0-beta01'
-  implementation 'androidx.navigation:navigation-ui-ktx:2.5.0-beta01'
+  // OLD Navigation
+//  implementation 'androidx.navigation:navigation-fragment-ktx:2.5.0-beta01'
+//  implementation 'androidx.navigation:navigation-ui-ktx:2.5.0-beta01'
 
+  // Navigation
+  implementation "androidx.navigation:navigation-compose:2.5.1"
+  implementation 'io.github.raamcosta.compose-destinations:core:1.7.15-beta'
+  ksp 'io.github.raamcosta.compose-destinations:ksp:1.7.15-beta'
+  // Add (id 'com.google.devtools.ksp' version '1.6.10-1.0.4') to the plugins of this build.gradle
+  // Make sure id 'org.jetbrains.kotlin.android' version '1.6.10' is in the Project build.gradle file
 
   // Image Loading
   implementation 'com.github.bumptech.glide:glide:4.12.0'
 
   // Database
-  implementation "androidx.room:room-runtime:2.4.2"
-  kapt "androidx.room:room-compiler:2.4.2"
+  implementation "androidx.room:room-runtime:2.4.3"
+  kapt "androidx.room:room-compiler:2.4.3"
 
 }

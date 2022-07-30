@@ -1,7 +1,8 @@
 package com.example.shotlist.base_mvi
 
-import androidx.fragment.app.Fragment
+import android.content.Context
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 interface BaseEvent {
-    fun performEvent(fragment: Fragment)
+    fun performEvent(context: Context, navigator: DestinationsNavigator)
 }

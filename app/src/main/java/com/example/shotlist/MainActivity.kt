@@ -1,15 +1,27 @@
 package com.example.shotlist
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.shotlist.R
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import com.example.shotlist.theme.ShotlistTheme
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContent {
+            ShotlistTheme{
+                Navigation()
+            }
+        }
     }
 }
 
-
-// TODO: make a template for activity main since we are getting scrwewed by nav graph
+@Destination
+@Composable
+fun Greeting(navigator: DestinationsNavigator, name: String) {
+    Text(text = "Hello $name!")
+}
